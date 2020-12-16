@@ -47,7 +47,19 @@ export default {
         return "translate(" + translate + ")";
       }); // 实际是计算每一项值的x坐标
 
-      barChart.name
+    let text = svg
+      .selectAll("text")
+      .data(dataset)
+      .enter()
+      .append("text")
+      .text((d) => d)
+      .attr("y", (d, _) => svgHeight - d - 2)
+      .attr("x", (_, i) => barWidth * i)
+      .attr("fill", "#A64C38");
+
+    text.name;
+
+    barChart.name;
   },
 };
 </script>
