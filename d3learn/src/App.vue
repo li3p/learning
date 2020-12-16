@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import D3Learn from './components/D3Learn3.vue'
+import D3Learn from './components/D3Learn7.vue'
 
 export default {
   name: 'App',

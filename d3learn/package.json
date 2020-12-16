@@ -8,6 +8,7 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@types/d3": "^6.2.0",
     "core-js": "^3.6.5",
     "d3": "^6.3.1",
     "vue": "^2.6.11"
@@ -34,10 +35,13 @@
       "parser": "babel-eslint"
     },
     "rules": {
-      "no-unused-vars": [2, { 
-        "vars": "local",
-        "args": "none" 
-      }]
+      "no-unused-vars": [
+        "off",
+        {
+          "vars": "local",
+          "args": "none"
+        }
+      ]
     }
   },
   "browserslist": [
