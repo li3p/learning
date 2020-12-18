@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <circle-mark :init-points="points[0]"/>
+    <circle-mark :init-points="points[0]" @dragged="onDragged"/>
 
     <!-- <article class="c_container c_small" id="wrap"></article> -->
   </div>
@@ -15,6 +15,12 @@ export default {
   components: {
     CircleMark,
   },
+  
+  methods: {
+    onDragged: function (points) {
+      console.log("after drag", points);
+    }
+  },
 
   mounted: function () {
   },
@@ -22,7 +28,7 @@ export default {
   data: function () {
     return {
       points: [
-        [[300, 100], [500, 100]]
+        [[300, 100]]
       ]
     }
   },
