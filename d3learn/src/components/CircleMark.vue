@@ -84,9 +84,6 @@ export default {
                   (angle > 247.5 && angle < 292.5)) {
                 self.controlX = self.targetY;
                 self.controlY = pt[1];
-              } else if (angle > 22.5 && angle < 67.5) {
-                self.controlX = self.targetX - (pt[1] - self.targetY);
-                self.controlY = pt[1];
               }
             } else {
               self.controlX = pt[0];
