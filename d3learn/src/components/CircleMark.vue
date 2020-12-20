@@ -1,9 +1,9 @@
 <template>
   <div id="app">
-    <svg id="dragdrop" width="600" height="200" style="background: beige">
+    <svg id="dragdrop" :width="svgWidth" :height="svgHeight" style="background: beige">
       <defs>
         <marker id="arrowhead" markerWidth="6" markerHeight="4"
-                refX="0" refY="2" orient="auto">
+                refX="4" refY="2" orient="auto">
           <polygon points="0 0, 6 2, 0 4"/>
         </marker>
       </defs>
@@ -17,7 +17,14 @@
       <rect v-show="hasControl" id="control" :x="controlX-controlWidth/2"
             :y="controlY-controlWidth/2" :width="controlWidth"
             :height="controlWidth" rx="2" ry="2" fill="green"/>
-      <circle id="source" :cx="sourceX" :cy="sourceY" r="20" fill="red"/>
+      <g>
+        <circle id="source" :cx="sourceX" :cy="sourceY" r="10" fill="red"/>
+        <text :x="sourceX" :y="sourceY" text-anchor="middle" stroke="#51c5cf"
+              font-size="0.8em"
+              stroke-width="2px" dy=".35em"
+              pointer-events="none">1
+        </text>
+      </g>
     </svg>
 
     <!-- <article class="c_container c_small" id="wrap"></article> -->
@@ -31,12 +38,20 @@ export default {
   name: "Mark",
 
   props: {
-    initPoints: Array
+    svgWidth: {type: Number, default: 600},
+    svgHeight: {type: Number, default: 200},
+    initPoints: Array,
   },
   watch: {
     initPoints: function (val) {
       console.log('initPoints changed')
+      this.init(val);
     },
+  },
+
+  created: function () {
+    console.log('created', this.initPoints)
+    this.init(this.initPoints);
   },
 
   mounted: function () {
@@ -154,6 +169,35 @@ export default {
       }
 
       this.$emit("dragged", points);
+    },
+
+    init: function (points) {
+      this.targetX =  300;
+      this.targetY =  100;
+      if (points.length > 0 && points[0][0]) {
+        this.targetX = points[0][0];
+      }
+      if (points.length > 0 && points[0][1]) {
+        this.targetY = points[0][1];
+      }
+      this.sourceX = this.targetX;
+      this.sourceY = this.targetY;
+      if (points.length > 1 && points[1][0]) {
+        this.sourceX = points[1][0];
+      }
+      if (points.length > 1 && points[1][1]) {
+        this.sourceY = points[1][1];
+      }
+
+      this.hasControl = points.length > 2;
+
+      if (this.hasControl && points[2][0]){
+        this.controlX = points[2][0];
+      }
+
+      if (this.hasControl && points[2][1]){
+        this.controlY = points[2][1];
+      }
     }
   },
 
@@ -168,15 +212,15 @@ export default {
 
   data: function () {
     return {
-      targetX: this.initPoints[0] ? this.initPoints[0][0] : 100,
-      targetY: this.initPoints[0] ? this.initPoints[0][1] : 100,
-      sourceX: this.initPoints[1] ? this.initPoints[1][0] : (this.initPoints[0] ? this.initPoints[0][0] : 100),
-      sourceY: this.initPoints[1] ? this.initPoints[1][1] : (this.initPoints[0] ? this.initPoints[0][1] : 100),
-      controlX: this.initPoints[2] ? this.initPoints[2][0] : 100,
-      controlY: this.initPoints[2] ? this.initPoints[2][1] : 100,
-      controlWidth: 10,
-      hasControl: this.initPoints[2],
+      targetX: 0,
+      targetY: 0,
+      sourceX: 0,
+      sourceY: 0,
+      controlX: 0,
+      controlY: 0,
+      hasControl: false,
       nextAngle: 90,
+      controlWidth: 10,
     }
   },
 };

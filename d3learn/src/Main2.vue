@@ -28,7 +28,7 @@ export default {
   data: function () {
     return {
       points: [
-        [[300, 100]]
+        [[200,50]]
       ]
     }
   },
