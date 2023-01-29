@@ -1,0 +1,3 @@
+[submodule "rust/sudoku"]
+	path = rust/sudoku
+	url = https://github.com/Emerentius/sudoku.git
