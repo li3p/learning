@@ -4,36 +4,65 @@ struct TreeNode {
     name: String,
 }
 
-struct Traveller<'a> {
-    // iter: dyn Iterator<Item = &'a TreeNode>,
-    iter: std::slice::Iter<'a, TreeNode>,
-}
+// struct Traveller<'a> {
+//     // iter: dyn Iterator<Item = &'a TreeNode>,
+//     iter: std::slice::Iter<'a, TreeNode>,
+// }
 
-impl<'a> Traveller<'a> {
-    fn pretty(&mut self, parent: &TreeNode, current: &TreeNode) -> Option<&'a TreeNode> {
-        assert!(parent.level + 1 == current.level);
+// impl<'a> Traveller<'a> {
+//     fn pretty(&mut self, parent: &TreeNode, current: &TreeNode) -> Option<&'a TreeNode> {
+//         assert!(parent.level + 1 == current.level);
 
-        println!(
-            "++ save current - {} under parent - {}",
-            current.name, parent.name
-        );
+//         println!(
+//             "++ save current - {} under parent - {}",
+//             current.name, parent.name
+//         );
 
-        let mut next: Option<&TreeNode> = None;
+//         let mut next: Option<&TreeNode> = None;
 
-        if let Some(node) = self.iter.next() {
-            if node.level == current.level + 1 {
-                next = self.pretty(current, node);
-            } else {
-                next = Some(node);
-            }
+//         if let Some(node) = self.iter.next() {
+//             if node.level == current.level + 1 {
+//                 next = self.pretty(current, node);
+//             } else {
+//                 next = Some(node);
+//             }
 
-            if next.is_some() && parent.level + 1 == next.unwrap().level {
-                next = self.pretty(parent, next.unwrap())
-            }
+//             if next.is_some() && parent.level + 1 == next.unwrap().level {
+//                 next = self.pretty(parent, next.unwrap())
+//             }
+//         }
+
+//         next
+//     }
+// }
+
+fn pretty_print<'a>(
+    iter: &mut std::slice::Iter<'a, TreeNode>,
+    parent: &TreeNode,
+    current: &TreeNode,
+) -> Option<&'a TreeNode> {
+    assert!(parent.level + 1 == current.level);
+
+    println!(
+        "++ save current - {} under parent - {}",
+        current.name, parent.name
+    );
+
+    let mut next: Option<&TreeNode> = None;
+
+    if let Some(node) = iter.next() {
+        if node.level == current.level + 1 {
+            next = pretty_print(iter, current, node);
+        } else {
+            next = Some(node);
         }
 
-        next
+        if next.is_some() && parent.level + 1 == next.unwrap().level {
+            next = pretty_print(iter, parent, next.unwrap())
+        }
     }
+
+    next
 }
 
 fn main() {
@@ -116,14 +145,14 @@ fn main() {
         },
     ];
 
-    // let mut iter = data.iter();
-    // let parent = iter.next().unwrap();
-    // let current = iter.next().unwrap();
-    // pretty_print(iter, parent, current);
+    let mut iter = data.iter();
+    let parent = iter.next().unwrap();
+    let current = iter.next().unwrap();
+    pretty_print(&mut iter, parent, current);
 
-    let mut traveller = Traveller { iter: data.iter() };
-    let parent = traveller.iter.next().unwrap();
-    let current = traveller.iter.next().unwrap();
+    // let mut traveller = Traveller { iter: data.iter() };
+    // let parent = traveller.iter.next().unwrap();
+    // let current = traveller.iter.next().unwrap();
 
-    traveller.pretty(parent, current);
+    // traveller.pretty(parent, current);
 }
