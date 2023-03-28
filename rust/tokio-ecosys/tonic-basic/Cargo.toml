@@ -11,6 +11,14 @@ path = "src/server.rs"
 name = "client"
 path = "src/client.rs"
 
+[[bin]]
+name = "server_local"
+path = "src/server_local.rs"
+
+[[bin]]
+name = "client_local"
+path = "src/client_local.rs"
+
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]

@@ -2,12 +2,15 @@ syntax = "proto3";
 
 package helloworld;
 
+import "types.proto";
+
 service Greeter2 {
   rpc SayHello (HelloRequest2) returns (HelloReply2) {}
 }
 
 message HelloRequest2 {
   string name = 1;
+  types.EnumType enum_type = 2;
 }
 
 message HelloReply2 {

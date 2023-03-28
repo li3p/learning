@@ -8,6 +8,10 @@ pub mod gretter {
     tonic::include_proto!("helloworld");
 }
 
+pub mod types {
+    tonic::include_proto!("types");
+}
+
 #[derive(Default)]
 pub struct MyGreeter {}
 

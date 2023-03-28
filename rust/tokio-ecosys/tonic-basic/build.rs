@@ -6,10 +6,18 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         // .file_descriptor_set_path(out_dir.join("helloworld_descriptor.bin"))
         .out_dir("src/pb")
         .compile(
-            &["protos/gretter.proto", "protos/gretter2.proto"],
+            &[
+                // "protos/types.proto",
+                "protos/gretter.proto",
+                "protos/gretter2.proto",
+            ],
             &["protos"],
         )
         .unwrap();
+
+    println!("cargo:rerun-if-changed=protos/types.proto");
+    println!("cargo:rerun-if-changed=protos/gretter.proto");
+    println!("cargo:rerun-if-changed=protos/gretter2.proto");
 
     Ok(())
 }

@@ -1,7 +1,7 @@
 mod pb;
 
-use pb::helloworld::greeter2_client::Greeter2Client;
-use pb::helloworld::HelloRequest2;
+use pb::greeter2_client::Greeter2Client;
+use pb::HelloRequest2;
 
 // pub mod gretter_cli {
 //     tonic::include_proto!("helloworld");
@@ -13,6 +13,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     let request = tonic::Request::new(HelloRequest2 {
         name: "Tonic".into(),
+        enum_type: pb::types::EnumType::A as i32,
     });
 
     let response = client.say_hello(request).await?;
