@@ -1,0 +1,22 @@
+[package]
+name = "tonic-basic"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "server"
+path = "src/server.rs"
+
+[[bin]]
+name = "client"
+path = "src/client.rs"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+prost = "0.11.8"
+prost-types = "0.11.8"
+tonic = { version = "0.8.3", features = ["codegen"] }
+
+[build-dependencies]
+tonic-build = { version = "0.8.4" }
