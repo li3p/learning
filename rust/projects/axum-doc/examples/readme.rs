@@ -23,7 +23,7 @@ async fn main() {
     //     .with_thread_ids(true);
     fmt()
         .with_env_filter(EnvFilter::from_default_env())
-        // .with_max_level(Level::TRACE)
+        // .with_max_level(tracing::Level::TRACE)
         .event_format(
             fmt::format()
                 .with_target(true)
