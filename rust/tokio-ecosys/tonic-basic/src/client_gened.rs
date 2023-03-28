@@ -1,9 +1,11 @@
-use gretter_cli::greeter2_client::Greeter2Client;
-use gretter_cli::HelloRequest2;
+mod pb;
 
-pub mod gretter_cli {
-    tonic::include_proto!("helloworld");
-}
+use pb::helloworld::greeter2_client::Greeter2Client;
+use pb::helloworld::HelloRequest2;
+
+// pub mod gretter_cli {
+//     tonic::include_proto!("helloworld");
+// }
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {

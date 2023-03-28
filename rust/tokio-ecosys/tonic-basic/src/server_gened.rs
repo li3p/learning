@@ -1,12 +1,14 @@
 use tonic::{transport::Server, Request, Response, Status};
 
-use gretter::greeter2_server::{Greeter2, Greeter2Server};
-use gretter::greeter_server::{Greeter, GreeterServer};
-use gretter::{HelloReply, HelloReply2, HelloRequest, HelloRequest2};
+mod pb;
 
-pub mod gretter {
-    tonic::include_proto!("helloworld");
-}
+use pb::greeter2_server::{Greeter2, Greeter2Server};
+use pb::helloworld::greeter_server::{Greeter, GreeterServer};
+use pb::helloworld::{HelloReply, HelloReply2, HelloRequest, HelloRequest2};
+
+// pub mod gretter {
+//     tonic::include_proto!("helloworld");
+// }
 
 #[derive(Default)]
 pub struct MyGreeter {}
@@ -19,7 +21,7 @@ impl Greeter for MyGreeter {
     ) -> Result<Response<HelloReply>, Status> {
         println!("Got a request from {:?}", request.remote_addr());
 
-        let reply = gretter::HelloReply {
+        let reply = pb::helloworld::HelloReply {
             message: format!("Hello {}!", request.into_inner().name),
         };
         Ok(Response::new(reply))
@@ -34,7 +36,7 @@ impl Greeter2 for MyGreeter {
     ) -> Result<Response<HelloReply2>, Status> {
         println!("Got a request from {:?}", request.remote_addr());
 
-        let reply = gretter::HelloReply2 {
+        let reply = pb::helloworld::HelloReply2 {
             message: format!("Hello {}!", request.into_inner().name),
         };
         Ok(Response::new(reply))
