@@ -6,15 +6,31 @@ where
     S: tracing::Subscriber,
 {
     fn on_event(&self, event: &tracing::Event, _: tracing_subscriber::layer::Context<S>) {
+        let mut fields = serde_json::Map::new();
+        let mut visitor = JsonVisitor(&mut fields);
+        event.record(&mut visitor);
         println!("Got event!");
         println!("  level={:?}", event.metadata().level());
         println!("  target={:?}", event.metadata().target());
         println!("  name={:?}", event.metadata().name());
-        for field in event.fields() {
-            println!("  field={}", field.name());
-        }
+        //-------------------- ex1: basic fields name output---------------------
+        // for field in event.fields() {
+        //     println!("  field={}", field.name());
+        // }
+
+        //------------------- ex2: output filed values  -------------------------
         // let mut visitor = PrintlnVisitor;
         // event.record(&mut visitor);
+        // Output the event in JSON
+
+        //-------------------- ex3: output in json format ------------------------
+        let output = serde_json::json!({
+            "target": event.metadata().target(),
+            "name": event.metadata().name(),
+            "level": format!("{:?}", event.metadata().level()),
+            "fields": fields,
+        });
+        println!("{}", serde_json::to_string_pretty(&output).unwrap());
     }
 }
 
@@ -51,5 +67,52 @@ impl tracing::field::Visit for PrintlnVisitor {
 
     fn record_debug(&mut self, field: &tracing::field::Field, value: &dyn std::fmt::Debug) {
         println!("  field={} value={:?}", field.name(), value)
+    }
+}
+
+struct JsonVisitor<'a>(&'a mut serde_json::Map<String, serde_json::Value>);
+
+impl<'a> tracing::field::Visit for JsonVisitor<'a> {
+    fn record_f64(&mut self, field: &tracing::field::Field, value: f64) {
+        self.0
+            .insert(field.name().to_string(), serde_json::json!(value));
+    }
+
+    fn record_i64(&mut self, field: &tracing::field::Field, value: i64) {
+        self.0
+            .insert(field.name().to_string(), serde_json::json!(value));
+    }
+
+    fn record_u64(&mut self, field: &tracing::field::Field, value: u64) {
+        self.0
+            .insert(field.name().to_string(), serde_json::json!(value));
+    }
+
+    fn record_bool(&mut self, field: &tracing::field::Field, value: bool) {
+        self.0
+            .insert(field.name().to_string(), serde_json::json!(value));
+    }
+
+    fn record_str(&mut self, field: &tracing::field::Field, value: &str) {
+        self.0
+            .insert(field.name().to_string(), serde_json::json!(value));
+    }
+
+    fn record_error(
+        &mut self,
+        field: &tracing::field::Field,
+        value: &(dyn std::error::Error + 'static),
+    ) {
+        self.0.insert(
+            field.name().to_string(),
+            serde_json::json!(value.to_string()),
+        );
+    }
+
+    fn record_debug(&mut self, field: &tracing::field::Field, value: &dyn std::fmt::Debug) {
+        self.0.insert(
+            field.name().to_string(),
+            serde_json::json!(format!("{:?}", value)),
+        );
     }
 }
