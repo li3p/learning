@@ -4,7 +4,7 @@ use tracing_subscriber::{self, EnvFilter};
 // 一个简单的函数，用于演示记录事件
 #[instrument]
 fn my_function() {
-    info!("this is a event.");
+    info!("this is a event");
 }
 
 fn main() {
