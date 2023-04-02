@@ -1,10 +1,13 @@
 // use std::{env, path::PathBuf};
 
+use std::fs;
+
 fn main() -> Result<(), Box<dyn std::error::Error>> {
-    // let out_dir = PathBuf::from(env::var("OUT_DIR").unwrap());
+    // let out_dir = PathBuf::from(env::var("OUT_DIR").unwrap());\
+    fs::create_dir_all("src/pb").unwrap();
     tonic_build::configure()
         // .file_descriptor_set_path(out_dir.join("helloworld_descriptor.bin"))
-        .out_dir("src/pb")
+        // .out_dir("src/pb")
         .compile(
             &[
                 // "protos/types.proto",
