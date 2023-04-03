@@ -6,5 +6,8 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+anyhow = "1.0.70"
 futures = "0.3.27"
-tokio = { version = "1.26.0", features = ["net", "macros", "rt-multi-thread"] }
+serde_yaml = "0.9.19"
+tokio = { version = "1.26.0", features = ["net", "macros", "rt-multi-thread", "full"] }
+toml = "0.7.3"
