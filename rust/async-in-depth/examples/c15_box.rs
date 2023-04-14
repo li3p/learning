@@ -10,10 +10,11 @@ struct MyAllocator;
 
 unsafe impl GlobalAlloc for MyAllocator {
     unsafe fn alloc(&self, layout: Layout) -> *mut u8 {
-        // Jemalloc.alloc(layout)
-        let data = Jemalloc.alloc(layout);
-        eprintln!("alloc: {:p}, size {}", data, layout.size());
-        data
+        Jemalloc.alloc(layout)
+
+        // let data = Jemalloc.alloc(layout);
+        // eprintln!("alloc: {:p}, size {}", data, layout.size());
+        // data
     }
 
     unsafe fn dealloc(&self, ptr: *mut u8, layout: Layout) {
@@ -50,7 +51,8 @@ impl Default for Matrix {
 }
 
 fn main() {
-    let a = Cow::borrowed("hello");
+    let a = Cow::Borrowed("hello");
+    println!("a: {}", a);
 
     let data = Box::new(Matrix::default());
     // 输出中有一个 1024 大小的内存分配，是 println! 导致的
