@@ -6,7 +6,7 @@ use std::rc::Rc;
 //         ├─> NODE3 ──> NODE4
 // NODE2 ──┘
 
-
+#[allow(dead_code)]
 #[derive(Debug)]
 struct Node {
     id: usize,
@@ -17,17 +17,15 @@ impl Node {
     fn new(id: usize) -> Self {
         Self { id, down: None }
     }
-    
+
     fn set_down(&mut self, down: Rc<Node>) {
         self.down = Some(down);
     }
 
     fn get_down(&self) -> Option<Rc<Node>> {
-        self.down.as_ref().map(|v|v.clone())
+        self.down.as_ref().map(|v| v.clone())
     }
 }
-    
-
 
 fn main() {
     let mut node1 = Node::new(1);
