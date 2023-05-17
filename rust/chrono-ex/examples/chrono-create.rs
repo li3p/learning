@@ -62,6 +62,8 @@ fn main() {
                 .unwrap(),
         )
         .unwrap();
+    println!("Local.from_local_datetime : {:?}", local_dt);
+
     let fixed_dt = FixedOffset::east_opt(9 * 3600)
         .unwrap()
         .from_local_datetime(
