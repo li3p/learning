@@ -1,0 +1,162 @@
+
+main_3:     file format mach-o-x86-64
+
+
+Disassembly of section .text:
+
+0000000100003dd1 <_swap>:
+int swap(int *a, int *b, int arr[5])
+{
+   100003dd1:	55                   	push   %rbp
+   100003dd2:	48 89 e5             	mov    %rsp,%rbp
+   100003dd5:	48 89 7d e8          	mov    %rdi,-0x18(%rbp)
+   100003dd9:	48 89 75 e0          	mov    %rsi,-0x20(%rbp)
+   100003ddd:	48 89 55 d8          	mov    %rdx,-0x28(%rbp)
+    int c, d, e;
+    // int arr[4] = {0x111, 0x222, 0x333, 0x444};
+    d = 0xdd + *a;
+   100003de1:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+   100003de5:	8b 00                	mov    (%rax),%eax
+   100003de7:	05 dd 00 00 00       	add    $0xdd,%eax
+   100003dec:	89 45 fc             	mov    %eax,-0x4(%rbp)
+    e = 0xee + *b;
+   100003def:	48 8b 45 e0          	mov    -0x20(%rbp),%rax
+   100003df3:	8b 00                	mov    (%rax),%eax
+   100003df5:	05 ee 00 00 00       	add    $0xee,%eax
+   100003dfa:	89 45 f8             	mov    %eax,-0x8(%rbp)
+    c = *a;
+   100003dfd:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+   100003e01:	8b 00                	mov    (%rax),%eax
+   100003e03:	89 45 f4             	mov    %eax,-0xc(%rbp)
+    *a = *b;
+   100003e06:	48 8b 45 e0          	mov    -0x20(%rbp),%rax
+   100003e0a:	8b 10                	mov    (%rax),%edx
+   100003e0c:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+   100003e10:	89 10                	mov    %edx,(%rax)
+    *b = c;
+   100003e12:	48 8b 45 e0          	mov    -0x20(%rbp),%rax
+   100003e16:	8b 55 f4             	mov    -0xc(%rbp),%edx
+   100003e19:	89 10                	mov    %edx,(%rax)
+    return c + 2 + d + e - arr[3] + arr[1];
+   100003e1b:	8b 45 f4             	mov    -0xc(%rbp),%eax
+   100003e1e:	8d 50 02             	lea    0x2(%rax),%edx
+   100003e21:	8b 45 fc             	mov    -0x4(%rbp),%eax
+   100003e24:	01 c2                	add    %eax,%edx
+   100003e26:	8b 45 f8             	mov    -0x8(%rbp),%eax
+   100003e29:	01 c2                	add    %eax,%edx
+   100003e2b:	48 8b 45 d8          	mov    -0x28(%rbp),%rax
+   100003e2f:	48 83 c0 0c          	add    $0xc,%rax
+   100003e33:	8b 00                	mov    (%rax),%eax
+   100003e35:	29 c2                	sub    %eax,%edx
+   100003e37:	48 8b 45 d8          	mov    -0x28(%rbp),%rax
+   100003e3b:	48 83 c0 04          	add    $0x4,%rax
+   100003e3f:	8b 00                	mov    (%rax),%eax
+   100003e41:	01 d0                	add    %edx,%eax
+}
+   100003e43:	5d                   	pop    %rbp
+   100003e44:	c3                   	ret
+
+0000000100003e45 <_swap0>:
+
+int swap0(int *a, int *b)
+{
+   100003e45:	55                   	push   %rbp                ; 保存main.%rbp
+   100003e46:	48 89 e5             	mov    %rsp,%rbp           ; self.%rbp = main.%rsp
+   100003e49:	48 83 ec 40          	sub    $0x40,%rsp          ; 创建出16个字的栈帧
+   100003e4d:	48 89 7d c8          	mov    %rdi,-0x38(%rbp)    ; 接收 *a 参数到栈
+   100003e51:	48 89 75 c0          	mov    %rsi,-0x40(%rbp)    ; 接收 *b 参数到栈
+    int c, d, e;
+    int arr0[5] = {0x88, 0x11, 0x22, 0x33, 0x44};
+   100003e55:	c7 45 d0 88 00 00 00 	movl   $0x88,-0x30(%rbp)
+   100003e5c:	c7 45 d4 11 00 00 00 	movl   $0x11,-0x2c(%rbp)
+   100003e63:	c7 45 d8 22 00 00 00 	movl   $0x22,-0x28(%rbp)
+   100003e6a:	c7 45 dc 33 00 00 00 	movl   $0x33,-0x24(%rbp)
+   100003e71:	c7 45 e0 44 00 00 00 	movl   $0x44,-0x20(%rbp)
+    d = 0xdd + *a;
+   100003e78:	48 8b 45 c8          	mov    -0x38(%rbp),%rax
+   100003e7c:	8b 00                	mov    (%rax),%eax
+   100003e7e:	05 dd 00 00 00       	add    $0xdd,%eax
+   100003e83:	89 45 fc             	mov    %eax,-0x4(%rbp)
+    e = 0xee + *b;
+   100003e86:	48 8b 45 c0          	mov    -0x40(%rbp),%rax
+   100003e8a:	8b 00                	mov    (%rax),%eax
+   100003e8c:	05 ee 00 00 00       	add    $0xee,%eax
+   100003e91:	89 45 f8             	mov    %eax,-0x8(%rbp)
+    c = *a;
+   100003e94:	48 8b 45 c8          	mov    -0x38(%rbp),%rax
+   100003e98:	8b 00                	mov    (%rax),%eax
+   100003e9a:	89 45 f4             	mov    %eax,-0xc(%rbp)
+    *a = *b;
+   100003e9d:	48 8b 45 c0          	mov    -0x40(%rbp),%rax
+   100003ea1:	8b 10                	mov    (%rax),%edx
+   100003ea3:	48 8b 45 c8          	mov    -0x38(%rbp),%rax
+   100003ea7:	89 10                	mov    %edx,(%rax)
+    *b = c;
+   100003ea9:	48 8b 45 c0          	mov    -0x40(%rbp),%rax
+   100003ead:	8b 55 f4             	mov    -0xc(%rbp),%edx
+   100003eb0:	89 10                	mov    %edx,(%rax)
+    int f = swap(&arr0[0], &arr0[1], arr0);
+   100003eb2:	48 8d 55 d0          	lea    -0x30(%rbp),%rdx
+   100003eb6:	48 8d 45 d0          	lea    -0x30(%rbp),%rax
+   100003eba:	48 8d 48 04          	lea    0x4(%rax),%rcx
+   100003ebe:	48 8d 45 d0          	lea    -0x30(%rbp),%rax
+   100003ec2:	48 89 ce             	mov    %rcx,%rsi
+   100003ec5:	48 89 c7             	mov    %rax,%rdi
+   100003ec8:	e8 04 ff ff ff       	call   100003dd1 <_swap>
+   100003ecd:	89 45 f0             	mov    %eax,-0x10(%rbp)
+    return f + c + 2 + d + e + arr0[1] + arr0[3] - arr0[4];
+   100003ed0:	8b 55 f0             	mov    -0x10(%rbp),%edx
+   100003ed3:	8b 45 f4             	mov    -0xc(%rbp),%eax
+   100003ed6:	01 d0                	add    %edx,%eax
+   100003ed8:	8d 50 02             	lea    0x2(%rax),%edx
+   100003edb:	8b 45 fc             	mov    -0x4(%rbp),%eax
+   100003ede:	01 c2                	add    %eax,%edx
+   100003ee0:	8b 45 f8             	mov    -0x8(%rbp),%eax
+   100003ee3:	01 c2                	add    %eax,%edx
+   100003ee5:	8b 45 d4             	mov    -0x2c(%rbp),%eax
+   100003ee8:	01 c2                	add    %eax,%edx
+   100003eea:	8b 45 dc             	mov    -0x24(%rbp),%eax
+   100003eed:	01 c2                	add    %eax,%edx
+   100003eef:	8b 45 e0             	mov    -0x20(%rbp),%eax
+   100003ef2:	29 c2                	sub    %eax,%edx
+   100003ef4:	89 d0                	mov    %edx,%eax
+}
+   100003ef6:	c9                   	leave
+   100003ef7:	c3                   	ret
+
+0000000100003ef8 <_main>:
+
+int main(void)
+{
+   100003ef8:	55                   	push   %rbp                ; 保存调用者的 rbp
+   100003ef9:	48 89 e5             	mov    %rsp,%rbp           ; 指向栈顶
+   100003efc:	48 83 ec 10          	sub    $0x10,%rsp          ；扩展出 4 个字的栈帧
+    int a;
+    int b;
+    int ret;
+    int c;
+    a = 16;
+   100003f00:	c7 45 f4 10 00 00 00 	movl   $0x10,-0xc(%rbp)    ; a 变量 -0x10
+    b = 64;
+   100003f07:	c7 45 f0 40 00 00 00 	movl   $0x40,-0x10(%rbp)   ; b 变量-0x10
+    ret = 10;
+   100003f0e:	c7 45 fc 0a 00 00 00 	movl   $0xa,-0x4(%rbp)     ; ret 变量 -0x4
+    c = swap0(&a, &b);
+   100003f15:	48 8d 55 f0          	lea    -0x10(%rbp),%rdx    ; 取 b 地址到 rdx
+   100003f19:	48 8d 45 f4          	lea    -0xc(%rbp),%rax     ; 取 a 地址到 rax
+   100003f1d:	48 89 d6             	mov    %rdx,%rsi           ; b地址 -> rsi 传参
+   100003f20:	48 89 c7             	mov    %rax,%rdi           ; a地址 -> rdi 传参
+   100003f23:	e8 1d ff ff ff       	call   100003e45 <_swap0>  ; push %rip, rsp 会自动增加
+   100003f28:	89 45 f8             	mov    %eax,-0x8(%rbp)     ; 通过 %eax 接受回传参数
+    ret = a - b + c;
+   100003f2b:	8b 55 f4             	mov    -0xc(%rbp),%edx     ; a 的值放到 edx
+   100003f2e:	8b 45 f0             	mov    -0x10(%rbp),%eax    ; b 的值放到 eax
+   100003f31:	29 c2                	sub    %eax,%edx           ; a - b 值放到 edx
+   100003f33:	8b 45 f8             	mov    -0x8(%rbp),%eax     ; c 的 值放到 edx
+   100003f36:	01 d0                	add    %edx,%eax           ; +c 的结果放到 eax
+   100003f38:	89 45 fc             	mov    %eax,-0x4(%rbp)     ; eax 值放到 ret 
+    return ret;
+   100003f3b:	8b 45 fc             	mov    -0x4(%rbp),%eax     ; 返回值通过 eax 传递
+}
+   100003f3e:	c9                   	leave                      ; mov %rbp, %rsp ; pop %rbp
+   100003f3f:	c3                   	ret                        ; pop %rip

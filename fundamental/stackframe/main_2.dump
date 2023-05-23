@@ -1,0 +1,102 @@
+
+main:     file format mach-o-x86-64
+
+
+Disassembly of section .text:
+
+0000000100003e81 <_swap>:
+int swap(int *a, int *b)
+{
+   100003e81:	55                   	push   %rbp
+   100003e82:	48 89 e5             	mov    %rsp,%rbp
+   100003e85:	48 89 7d b8          	mov    %rdi,-0x48(%rbp)
+   100003e89:	48 89 75 b0          	mov    %rsi,-0x50(%rbp)
+   int c, d, e;
+   int arr[10] = {0, 0x11, 0x22, 0x33, 0x44, 0x55, 0x66, 0x77, 0x88, 0x99};
+   100003e8d:	c7 45 c0 00 00 00 00 	movl   $0x0,-0x40(%rbp)
+   100003e94:	c7 45 c4 11 00 00 00 	movl   $0x11,-0x3c(%rbp)
+   100003e9b:	c7 45 c8 22 00 00 00 	movl   $0x22,-0x38(%rbp)
+   100003ea2:	c7 45 cc 33 00 00 00 	movl   $0x33,-0x34(%rbp)
+   100003ea9:	c7 45 d0 44 00 00 00 	movl   $0x44,-0x30(%rbp)
+   100003eb0:	c7 45 d4 55 00 00 00 	movl   $0x55,-0x2c(%rbp)
+   100003eb7:	c7 45 d8 66 00 00 00 	movl   $0x66,-0x28(%rbp)
+   100003ebe:	c7 45 dc 77 00 00 00 	movl   $0x77,-0x24(%rbp)
+   100003ec5:	c7 45 e0 88 00 00 00 	movl   $0x88,-0x20(%rbp)
+   100003ecc:	c7 45 e4 99 00 00 00 	movl   $0x99,-0x1c(%rbp)
+   d = 0xdd + *a;
+   100003ed3:	48 8b 45 b8          	mov    -0x48(%rbp),%rax
+   100003ed7:	8b 00                	mov    (%rax),%eax
+   100003ed9:	05 dd 00 00 00       	add    $0xdd,%eax
+   100003ede:	89 45 fc             	mov    %eax,-0x4(%rbp)
+   e = 0xee + *b;
+   100003ee1:	48 8b 45 b0          	mov    -0x50(%rbp),%rax
+   100003ee5:	8b 00                	mov    (%rax),%eax
+   100003ee7:	05 ee 00 00 00       	add    $0xee,%eax
+   100003eec:	89 45 f8             	mov    %eax,-0x8(%rbp)
+   c = *a;
+   100003eef:	48 8b 45 b8          	mov    -0x48(%rbp),%rax
+   100003ef3:	8b 00                	mov    (%rax),%eax
+   100003ef5:	89 45 f4             	mov    %eax,-0xc(%rbp)
+   *a = *b;
+   100003ef8:	48 8b 45 b0          	mov    -0x50(%rbp),%rax
+   100003efc:	8b 10                	mov    (%rax),%edx
+   100003efe:	48 8b 45 b8          	mov    -0x48(%rbp),%rax
+   100003f02:	89 10                	mov    %edx,(%rax)
+   *b = c;
+   100003f04:	48 8b 45 b0          	mov    -0x50(%rbp),%rax
+   100003f08:	8b 55 f4             	mov    -0xc(%rbp),%edx
+   100003f0b:	89 10                	mov    %edx,(%rax)
+   return c + 2 + d + e + arr[4] + arr[9] - arr[3];
+   100003f0d:	8b 45 f4             	mov    -0xc(%rbp),%eax
+   100003f10:	8d 50 02             	lea    0x2(%rax),%edx
+   100003f13:	8b 45 fc             	mov    -0x4(%rbp),%eax
+   100003f16:	01 c2                	add    %eax,%edx
+   100003f18:	8b 45 f8             	mov    -0x8(%rbp),%eax
+   100003f1b:	01 c2                	add    %eax,%edx
+   100003f1d:	8b 45 d0             	mov    -0x30(%rbp),%eax
+   100003f20:	01 c2                	add    %eax,%edx
+   100003f22:	8b 45 e4             	mov    -0x1c(%rbp),%eax
+   100003f25:	01 c2                	add    %eax,%edx
+   100003f27:	8b 45 cc             	mov    -0x34(%rbp),%eax
+   100003f2a:	29 c2                	sub    %eax,%edx
+   100003f2c:	89 d0                	mov    %edx,%eax
+}
+   100003f2e:	5d                   	pop    %rbp
+   100003f2f:	c3                   	ret
+
+0000000100003f30 <_main>:
+
+int main(void)
+{
+   100003f30:	55                   	push   %rbp
+   100003f31:	48 89 e5             	mov    %rsp,%rbp
+   100003f34:	48 83 ec 10          	sub    $0x10,%rsp
+   int a;
+   int b;
+   int ret;
+   int c;
+   a = 16;
+   100003f38:	c7 45 f4 10 00 00 00 	movl   $0x10,-0xc(%rbp)
+   b = 64;
+   100003f3f:	c7 45 f0 40 00 00 00 	movl   $0x40,-0x10(%rbp)
+   ret = 10;
+   100003f46:	c7 45 fc 0a 00 00 00 	movl   $0xa,-0x4(%rbp)
+   c = swap(&a, &b);
+   100003f4d:	48 8d 55 f0          	lea    -0x10(%rbp),%rdx
+   100003f51:	48 8d 45 f4          	lea    -0xc(%rbp),%rax
+   100003f55:	48 89 d6             	mov    %rdx,%rsi
+   100003f58:	48 89 c7             	mov    %rax,%rdi
+   100003f5b:	e8 21 ff ff ff       	call   100003e81 <_swap>
+   100003f60:	89 45 f8             	mov    %eax,-0x8(%rbp)
+   ret = a - b + c;
+   100003f63:	8b 55 f4             	mov    -0xc(%rbp),%edx
+   100003f66:	8b 45 f0             	mov    -0x10(%rbp),%eax
+   100003f69:	29 c2                	sub    %eax,%edx
+   100003f6b:	8b 45 f8             	mov    -0x8(%rbp),%eax
+   100003f6e:	01 d0                	add    %edx,%eax
+   100003f70:	89 45 fc             	mov    %eax,-0x4(%rbp)
+   return ret;
+   100003f73:	8b 45 fc             	mov    -0x4(%rbp),%eax
+}
+   100003f76:	c9                   	leave
+   100003f77:	c3                   	ret
