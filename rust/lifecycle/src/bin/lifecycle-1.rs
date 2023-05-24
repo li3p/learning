@@ -11,6 +11,6 @@ fn main() {
     let s1_r = &s1;
     {
         let s2 = String::from("C");
-        let res = the_longest(s1_r, &s2);
+        let _res = the_longest(s1_r, &s2);
     }
 }

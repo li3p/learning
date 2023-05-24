@@ -23,3 +23,10 @@ fn process_data() -> Result<()> {
 fn unpack_config(data: &str) -> &str {
     "/some/path/that/does/not/exist"
 }
+
+fn main() {
+    if let Err(e) = process_data() {
+        eprintln!("Error: {}", e);
+        std::process::exit(1);
+    }
+}
