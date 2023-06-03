@@ -29,6 +29,13 @@ class MyCounterInheritedWidget extends StatefulWidget {
     assert(result != null, 'No MyInheritedWidget found in context');
     return result!;
   }
+
+  static MyCounterInheritedWidgetState of2(BuildContext context) {
+    final MyCounterInheritedWidgetState? result =
+        context.findAncestorWidgetOfExactType<MyInheritedWidget>()!.data;
+    assert(result != null, 'No MyInheritedWidget found in context');
+    return result!;
+  }
 }
 
 class MyCounterInheritedWidgetState extends State<MyCounterInheritedWidget> {

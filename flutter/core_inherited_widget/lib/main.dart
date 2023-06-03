@@ -103,7 +103,7 @@ class _MyHomePageState extends State<MyHomePage> {
             //   style: Theme.of(context).textTheme.headlineMedium,
             // ),
             MyTextWidget(),
-            MyButtonWidget(),
+            const MyButtonWidget(),
           ],
         ),
       ),
@@ -130,7 +130,7 @@ class MyTextWidget extends StatelessWidget {
 }
 
 class MyButtonWidget extends StatelessWidget {
-  // const MyButton({super.key});
+  const MyButtonWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -138,7 +138,7 @@ class MyButtonWidget extends StatelessWidget {
 
     return ElevatedButton(
       onPressed: () {
-        MyCounterInheritedWidget.of(context).increamentCounter();
+        MyCounterInheritedWidget.of2(context).increamentCounter();
       },
       child: const Icon(Icons.add),
     );
