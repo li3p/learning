@@ -60,17 +60,25 @@ class _MyHomePageState extends State<MyHomePage> {
   int _counter = 10;
 
   void _navigate() async {
-    var value = await Navigator.of(context).push(
+    // var value = await
+    Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (context) => PageTwo(counter: _counter),
+        builder: (context) => PageTwo(
+          counter: _counter,
+          onCounterChanged: (value) {
+            setState(() {
+              _counter = value;
+            });
+          },
+        ),
       ),
     );
 
-    if (value != null) {
-      setState(() {
-        _counter = value;
-      });
-    }
+    // if (value != null) {
+    //   setState(() {
+    //     _counter = value;
+    //   });
+    // }
   }
 
   @override

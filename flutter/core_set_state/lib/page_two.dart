@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 class PageTwo extends StatefulWidget {
   int counter;
   final String title = 'Page Two';
-  PageTwo({required this.counter});
+  final Function(int) onCounterChanged;
+  PageTwo({required this.counter, required this.onCounterChanged});
   @override
   _PageTwoState createState() => _PageTwoState();
 }
@@ -13,6 +14,7 @@ class _PageTwoState extends State<PageTwo> {
     setState(() {
       widget.counter++;
     });
+    widget.onCounterChanged(widget.counter);
   }
 
   @override
