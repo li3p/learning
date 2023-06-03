@@ -1,4 +1,5 @@
-# core_inherited_widget
+# core_inherited_model
+
 
 A new Flutter project.
 
