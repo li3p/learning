@@ -4,7 +4,7 @@ class PageTwo extends StatefulWidget {
   int counter;
   final String title = 'Page Two';
   final Function(int) onCounterChanged;
-  PageTwo({required this.counter, required this.onCounterChanged});
+  PageTwo({super.key, required this.counter, required this.onCounterChanged});
   @override
   _PageTwoState createState() => _PageTwoState();
 }
