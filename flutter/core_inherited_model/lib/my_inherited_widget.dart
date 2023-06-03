@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class MyInheritedWidget extends InheritedWidget {
+class MyInheritedWidget extends InheritedModel<int> {
   final MyCounterInheritedWidgetState data;
   const MyInheritedWidget(
       {super.key, required super.child, required this.data});
@@ -13,6 +13,12 @@ class MyInheritedWidget extends InheritedWidget {
 
   static MyInheritedWidget of(BuildContext context) {
     return context.dependOnInheritedWidgetOfExactType<MyInheritedWidget>()!;
+  }
+
+  @override
+  bool updateShouldNotifyDependent(
+      covariant InheritedModel<int> oldWidget, Set<int> dependencies) {
+    return dependencies.contains(1);
   }
 }
 

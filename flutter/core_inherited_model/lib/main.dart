@@ -123,7 +123,11 @@ class MyTextWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     print("MyText widget builds");
     return Text(
-      MyCounterInheritedWidget.of(context).counterValue.toString(),
+      // MyCounterInheritedWidget.of(context).counterValue.toString(),
+      InheritedModel.inheritFrom<MyInheritedWidget>(context, aspect: 1)!
+          .data
+          .counterValue
+          .toString(),
       style: Theme.of(context).textTheme.headlineMedium,
     );
   }
@@ -138,7 +142,10 @@ class MyButtonWidget extends StatelessWidget {
 
     return ElevatedButton(
       onPressed: () {
-        MyCounterInheritedWidget.of2(context).increamentCounter();
+        // MyCounterInheritedWidget.of2(context).increamentCounter();
+        InheritedModel.inheritFrom<MyInheritedWidget>(context, aspect: 2)!
+            .data
+            .increamentCounter();
       },
       child: const Icon(Icons.add),
     );
