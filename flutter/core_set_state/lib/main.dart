@@ -1,3 +1,4 @@
+import 'package:core_set_state/my_stateful_widget.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -112,6 +113,7 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
+            ExampleStatefulPage(),
           ],
         ),
       ),
