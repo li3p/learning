@@ -7,7 +7,7 @@ A new Flutter project.
  1252  flutter pub add flutter_riverpod
  1253  flutter pub add riverpod_annotation
  1255  flutter pub add build_runner riverpod_generator --dev
- 1254  flutter pub run build_runner watch
+ 1254  dart run build_runner watch
 
  ```
 
