@@ -19,16 +19,17 @@ class ProviderCounterExamplePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Provider Counter Example'),
       ),
-      body: Center(
+      body: const Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text(
+            Text(
               'You have pushed the button this may times:',
             ),
             // Text('${Provider.of<Counter>(context)._count}',
-            Text('${context.watch<Counter>()._count}',
-                style: Theme.of(context).textTheme.headlineMedium),
+            // Text('${context.watch<Counter>()._count}',
+            //     style: Theme.of(context).textTheme.headlineMedium),
+            MyCounter(),
           ],
         ),
       ),
@@ -40,5 +41,15 @@ class ProviderCounterExamplePage extends StatelessWidget {
         child: const Icon(Icons.add),
       ),
     );
+  }
+}
+
+class MyCounter extends StatelessWidget {
+  const MyCounter({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Text('${context.watch<Counter>()._count}',
+        style: Theme.of(context).textTheme.headlineMedium);
   }
 }
