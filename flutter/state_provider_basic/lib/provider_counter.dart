@@ -26,14 +26,16 @@ class ProviderCounterExamplePage extends StatelessWidget {
             const Text(
               'You have pushed the button this may times:',
             ),
-            Text('${Provider.of<Counter>(context)._count}',
+            // Text('${Provider.of<Counter>(context)._count}',
+            Text('${context.watch<Counter>()._count}',
                 style: Theme.of(context).textTheme.headlineMedium),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () =>
-            Provider.of<Counter>(context, listen: false).increment(),
+            // Provider.of<Counter>(context, listen: false).increment(),
+            context.read<Counter>().increment(),
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ),
