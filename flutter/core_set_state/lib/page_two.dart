@@ -6,7 +6,7 @@ class PageTwo extends StatefulWidget {
   final Function(int) onCounterChanged;
   PageTwo({super.key, required this.counter, required this.onCounterChanged});
   @override
-  _PageTwoState createState() => _PageTwoState();
+  State<PageTwo> createState() => _PageTwoState();
 }
 
 class _PageTwoState extends State<PageTwo> {
