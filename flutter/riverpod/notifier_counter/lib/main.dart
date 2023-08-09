@@ -3,9 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'counter.dart';
 
-final counterProvider =
-    NotifierProvider<CounterNotifier, int>(CounterNotifier.new);
-
 void main() {
   runApp(const ProviderScope(child: MyApp()));
 }

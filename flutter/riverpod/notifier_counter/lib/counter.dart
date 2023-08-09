@@ -14,6 +14,9 @@ class CounterNotifier extends Notifier<int> {
   }
 }
 
+final counterProvider =
+    NotifierProvider<CounterNotifier, int>(CounterNotifier.new);
+
 class CounterWidget extends ConsumerWidget {
   const CounterWidget({super.key});
 
@@ -21,7 +24,8 @@ class CounterWidget extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final counter = ref.watch(counterProvider);
     return ElevatedButton(
-      onPressed: () => ref.read(counterProvider.notifier).state++,
+      // onPressed: () => ref.read(counterProvider.notifier).state++,
+      onPressed: () => ref.read(counterProvider.notifier).increment(),
       child: Text('Value: $counter'),
     );
   }

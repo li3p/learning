@@ -17,6 +17,8 @@ class Counter extends _$Counter {
 }
 
 class CounterWidget extends ConsumerWidget {
+  const CounterWidget({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     // 1. watch the provider and rebuild when the value changes
