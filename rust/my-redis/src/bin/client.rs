@@ -33,7 +33,7 @@ async fn main() {
         tx.send(cmd).await.unwrap();
 
         let res = resp_rx.await;
-        println!("GOT = {:?}", res);
+        println!("GOT1 = {:?}", res);
     });
     let t2 = tokio::spawn(async move {
         let (resp_tx, resp_rx) = oneshot::channel();
@@ -46,7 +46,7 @@ async fn main() {
         tx2.send(cmd).await.unwrap();
 
         let res = resp_rx.await;
-        println!("GOT = {:?}", res);
+        println!("GOT2 = {:?}", res);
     });
 
     let manager = tokio::spawn(async move {
