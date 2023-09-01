@@ -15,6 +15,6 @@ fn main() {
     mock.expect_foo()
         .with(predicate::eq(4))
         .times(1)
-        .returning(|x| x + 2);
+        .returning(|x| x + 1);
     assert_eq!(5, call_with_four(&mock));
 }
