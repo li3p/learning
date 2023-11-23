@@ -8,8 +8,8 @@ class MyBlocCubitCounterPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => CounterCubitBloc(),
+    return BlocProvider<CounterCubit>(
+      create: (_) => CounterCubit(),
       child: const CounterCubitView(),
     );
   }
@@ -26,7 +26,7 @@ class CounterCubitView extends StatelessWidget {
           title: const Text("Bloc Cubit Counter"),
         ),
         body: Center(
-          child: BlocBuilder<CounterCubitBloc, CounterState>(
+          child: BlocBuilder<CounterCubit, CounterState>(
             builder: (context, state) {
               return Text(
                 '${state.counter}',
@@ -40,16 +40,12 @@ class CounterCubitView extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             FloatingActionButton(
-              onPressed: () => context
-                  .read<CounterCubitBloc>()
-                  .add(CounterIncrementPressed()),
+              onPressed: () => context.read<CounterCubit>().increment(),
               tooltip: 'Increment',
               child: const Icon(Icons.add),
             ),
             FloatingActionButton(
-              onPressed: () => context
-                  .read<CounterCubitBloc>()
-                  .add(CounterDecrementPressed()),
+              onPressed: () => context.read<CounterCubit>().decrement(),
               tooltip: 'Decrement',
               child: const Icon(Icons.remove),
             ),
@@ -58,24 +54,10 @@ class CounterCubitView extends StatelessWidget {
   }
 }
 
-/// Event being processed by [CounterBloc].
-abstract class CounterEvent {}
+class CounterCubit extends Cubit<CounterState> {
+  CounterCubit() : super(const CounterState());
 
-/// Notifies bloc to increment state.
-class CounterIncrementPressed extends CounterEvent {}
+  void increment() => emit(CounterState(counter: state.counter + 1));
 
-/// Notifies bloc to decrement state.
-class CounterDecrementPressed extends CounterEvent {}
-
-/// {@template counter_bloc}
-/// A simple [Bloc] that manages an `int` as its state.
-/// {@endtemplate}
-class CounterCubitBloc extends Bloc<CounterEvent, CounterState> {
-  /// {@macro counter_bloc}
-  CounterCubitBloc() : super(const CounterState()) {
-    on<CounterIncrementPressed>(
-        (event, emit) => emit(CounterState(counter: state.counter + 1)));
-    on<CounterDecrementPressed>(
-        (event, emit) => emit(CounterState(counter: state.counter - 1)));
-  }
+  void decrement() => emit(CounterState(counter: state.counter - 1));
 }

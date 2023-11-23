@@ -13,24 +13,8 @@ void main() {
   runApp(const MyBlocCubitApp());
 }
 
-class MyBlocCubitApp extends StatelessWidget {
+class MyBlocCubitApp extends MyApp {
   const MyBlocCubitApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => CounterCubitBloc(),
-      child: MaterialApp(
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-          useMaterial3: true,
-        ),
-        // home: const MyBlocCounterPage(),
-        home: const MyBlocCubitCounterPage(),
-      ),
-    );
-  }
 }
 
 ///
@@ -86,7 +70,8 @@ class MyApp extends StatelessWidget {
       // home: const MyHomePage(title: 'Flutter Demo Home Page'),
       // home: MyValueNotifierPage(),
       // home: MyValueListenerPage(),
-      home: const MyNotificationListenerPage(),
+      // home: const MyNotificationListenerPage(),
+      home: const MyBlocCubitCounterPage(),
     );
   }
 }
