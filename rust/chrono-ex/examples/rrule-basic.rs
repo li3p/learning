@@ -94,3 +94,9 @@ fn test_before_after() {
         result.dates
     );
 }
+
+
+#[test]
+fn compose_rrule_by_code() {
+    
+}

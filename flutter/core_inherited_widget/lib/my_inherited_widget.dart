@@ -11,9 +11,9 @@ class MyInheritedWidget extends InheritedWidget {
     return child != oldWidget;
   }
 
-  static MyInheritedWidget of(BuildContext context) {
-    return context.dependOnInheritedWidgetOfExactType<MyInheritedWidget>()!;
-  }
+  // static MyInheritedWidget of(BuildContext context) {
+  //   return context.dependOnInheritedWidgetOfExactType<MyInheritedWidget>()!;
+  // }
 }
 
 class MyCounterInheritedWidget extends StatefulWidget {
@@ -24,17 +24,31 @@ class MyCounterInheritedWidget extends StatefulWidget {
   State<StatefulWidget> createState() => MyCounterInheritedWidgetState();
 
   static MyCounterInheritedWidgetState of(BuildContext context) {
-    final MyCounterInheritedWidgetState? result =
-        context.dependOnInheritedWidgetOfExactType<MyInheritedWidget>()!.data;
-    assert(result != null, 'No MyInheritedWidget found in context');
-    return result!;
+    // final MyInheritedWidget myInheritedWidget =
+    //     context.dependOnInheritedWidgetOfExactType<MyInheritedWidget>()!;
+
+    // if (null == myInheritedWidget) {
+    //   throw Exception('No MyInheritedWidget found in context');
+    // }
+    // final MyCounterInheritedWidgetState? result =
+    //     context.dependOnInheritedWidgetOfExactType<MyInheritedWidget>()!.data;
+    // assert(result != null, 'No MyInheritedWidget found in context');
+    return context
+            .dependOnInheritedWidgetOfExactType<MyInheritedWidget>()
+            ?.data ??
+        (throw FlutterError('No MyInheritedWidget found in context'));
   }
 
+  // static MyCounterInheritedWidgetState of2(BuildContext context) {
+  //   final MyCounterInheritedWidgetState? result =
+  //       context.findAncestorWidgetOfExactType<MyInheritedWidget>()!.data;
+  //   assert(result != null, 'No MyInheritedWidget found in context');
+  //   return result!;
+  // }
+
   static MyCounterInheritedWidgetState of2(BuildContext context) {
-    final MyCounterInheritedWidgetState? result =
-        context.findAncestorWidgetOfExactType<MyInheritedWidget>()!.data;
-    assert(result != null, 'No MyInheritedWidget found in context');
-    return result!;
+    return context.findAncestorWidgetOfExactType<MyInheritedWidget>()?.data ??
+        (throw FlutterError('No MyInheritedWidget found in context'));
   }
 }
 
