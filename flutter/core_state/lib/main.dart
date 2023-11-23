@@ -1,3 +1,4 @@
+import 'package:core_state/value_notifier.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -31,7 +32,8 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      // home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyValueNotifierPage(),
     );
   }
 }
@@ -114,6 +116,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             const WidgetA(),
             const WidgetB(),
+            const WidgetC(),
           ],
         ),
       ),
@@ -143,5 +146,25 @@ class WidgetB extends StatelessWidget {
   Widget build(BuildContext context) {
     print("WidgetB build");
     return Container();
+  }
+}
+
+class WidgetC extends StatefulWidget {
+  const WidgetC({super.key});
+
+  @override
+  State<WidgetC> createState() => _WidgetCState();
+}
+
+class _WidgetCState extends State<WidgetC> {
+  int quantity = 200;
+
+  @override
+  Widget build(BuildContext context) {
+    print("WidgetC build");
+    return Text(
+      '$quantity',
+      style: Theme.of(context).textTheme.headlineMedium,
+    );
   }
 }
