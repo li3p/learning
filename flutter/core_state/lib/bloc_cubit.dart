@@ -39,15 +39,21 @@ class CounterCubitView extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.end,
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            FloatingActionButton(
-              onPressed: () => context.read<CounterCubit>().increment(),
-              tooltip: 'Increment',
-              child: const Icon(Icons.add),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: FloatingActionButton(
+                onPressed: () => context.read<CounterCubit>().increment(),
+                tooltip: 'Increment',
+                child: const Icon(Icons.add),
+              ),
             ),
-            FloatingActionButton(
-              onPressed: () => context.read<CounterCubit>().decrement(),
-              tooltip: 'Decrement',
-              child: const Icon(Icons.remove),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: FloatingActionButton(
+                onPressed: () => context.read<CounterCubit>().decrement(),
+                tooltip: 'Decrement',
+                child: const Icon(Icons.remove),
+              ),
             ),
           ],
         ));
