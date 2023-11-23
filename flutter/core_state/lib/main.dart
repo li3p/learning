@@ -1,4 +1,5 @@
 import 'package:core_state/bloc_counter.dart';
+import 'package:core_state/bloc_cubit.dart';
 import 'package:core_state/bloc_stream.dart';
 import 'package:core_state/notification_listener.dart';
 import 'package:core_state/value_listenable.dart';
@@ -8,20 +9,40 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() {
   // runApp(const MyApp());
-  runApp(const MyBlocApp());
+  // runApp(const MyBlocApp());
+  runApp(const MyBlocCubitApp());
 }
 
+class MyBlocCubitApp extends StatelessWidget {
+  const MyBlocCubitApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (_) => CounterCubitBloc(),
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          useMaterial3: true,
+        ),
+        // home: const MyBlocCounterPage(),
+        home: const MyBlocCubitCounterPage(),
+      ),
+    );
+  }
+}
+
+///
+/// App for Bloc Counter example
+///
 class MyBlocApp extends StatelessWidget {
   const MyBlocApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider<CounterBloc>(
-          create: (context) => CounterBloc(),
-        )
-      ],
+    return BlocProvider(
+      create: (_) => CounterBloc(),
       child: MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
@@ -29,17 +50,9 @@ class MyBlocApp extends StatelessWidget {
           useMaterial3: true,
         ),
         home: const MyBlocCounterPage(),
+        // home: const MyBlocCubitCounterPage(),
       ),
     );
-
-    //   return MultiBlocPMaterialApp(
-    //     title: 'Flutter Demo',
-    //     theme: ThemeData(
-    //       colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-    //       useMaterial3: true,
-    //     ),
-    //     home: const MyBlocCounterPage(),
-    //   );
   }
 }
 
@@ -73,8 +86,7 @@ class MyApp extends StatelessWidget {
       // home: const MyHomePage(title: 'Flutter Demo Home Page'),
       // home: MyValueNotifierPage(),
       // home: MyValueListenerPage(),
-      // home: const MyNotificationListenerPage(),
-      home: const MyBlocCounterPage(),
+      home: const MyNotificationListenerPage(),
     );
   }
 }
