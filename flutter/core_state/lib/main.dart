@@ -1,3 +1,4 @@
+import 'package:core_state/notification_listener.dart';
 import 'package:core_state/value_listenable.dart';
 import 'package:core_state/value_notifier.dart';
 import 'package:flutter/material.dart';
@@ -35,7 +36,8 @@ class MyApp extends StatelessWidget {
       ),
       // home: const MyHomePage(title: 'Flutter Demo Home Page'),
       // home: MyValueNotifierPage(),
-      home: MyValueListenerPage(),
+      // home: MyValueListenerPage(),
+      home: const MyNotificationListenerPage(),
     );
   }
 }
