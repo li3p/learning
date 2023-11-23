@@ -57,7 +57,7 @@ class CounterCubitView extends StatelessWidget {
 class CounterCubit extends Cubit<CounterState> {
   CounterCubit() : super(const CounterState());
 
-  void increment() => emit(CounterState(counter: state.counter + 1));
+  void increment() => emit(state.copyWith(counter: state.counter + 1));
 
-  void decrement() => emit(CounterState(counter: state.counter - 1));
+  void decrement() => emit(state.copyWith(counter: state.counter - 1));
 }
