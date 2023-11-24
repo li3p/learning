@@ -2,15 +2,25 @@ import 'package:core_state/bloc_counter.dart';
 import 'package:core_state/bloc_cubit.dart';
 import 'package:core_state/bloc_stream.dart';
 import 'package:core_state/notification_listener.dart';
+import 'package:core_state/provider_counter.dart';
 import 'package:core_state/value_listenable.dart';
 import 'package:core_state/value_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'package:provider/provider.dart';
+
 void main() {
   // runApp(const MyApp());
   // runApp(const MyBlocApp());
-  runApp(const MyBlocCubitApp());
+  // runApp(const MyBlocCubitApp());
+
+  runApp(
+    ChangeNotifierProvider<ProviderCounter>(
+      child: MyProviderCountApp(),
+      create: (_) => ProviderCounter(),
+    ),
+  );
 }
 
 class MyBlocCubitApp extends MyApp {
