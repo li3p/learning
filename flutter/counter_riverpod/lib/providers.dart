@@ -1,4 +1,18 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+part 'providers.g.dart';
+
+@riverpod
+class MyCounter extends _$MyCounter {
+  @override
+  int build() => 0;
+
+  void increment() {
+    state++;
+  }
+}
 
 class Counter extends StateNotifier<int> {
   Counter() : super(0);
