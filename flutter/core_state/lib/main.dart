@@ -17,7 +17,7 @@ void main() {
 
   runApp(
     ChangeNotifierProvider<ProviderCounter>(
-      child: MyProviderCountApp(),
+      child: const MyProviderCountApp(),
       create: (_) => ProviderCounter(),
     ),
   );
