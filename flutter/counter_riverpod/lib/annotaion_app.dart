@@ -59,7 +59,7 @@ class MyRiverpodHomePage extends ConsumerWidget {
               'You have pushed the button this many times:',
             ),
             Text(
-              '${ref.watch(myCounterProvider)}',
+              '${ref.watch(myCounterAltProvider)}',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
           ],
