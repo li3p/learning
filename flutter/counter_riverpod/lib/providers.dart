@@ -26,3 +26,29 @@ class Counter extends StateNotifier<int> {
 final counterProvider = StateNotifierProvider<Counter, int>((ref) {
   return Counter();
 });
+
+class Todo {
+  Todo(this.description, this.isCompleted);
+  final bool isCompleted;
+  final String description;
+}
+
+@riverpod
+class Todos extends _$Todos {
+  @override
+  List<Todo> build() {
+    return [];
+  }
+
+  void addTodo(Todo todo) {
+    state = [...state, todo];
+  }
+}
+
+@riverpod
+List<Todo> completedTodos(CompletedTodosRef ref) {
+  final todos = ref.watch(todosProvider);
+
+  // 我们只返回完成的待办事项
+  return todos.where((todo) => todo.isCompleted).toList();
+}

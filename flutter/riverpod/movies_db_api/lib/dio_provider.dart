@@ -5,10 +5,12 @@ part 'dio_provider.g.dart';
 
 @riverpod
 Dio dio(DioRef ref) {
-  return Dio(BaseOptions(
-    baseUrl: ref.baseUrl,
-    connectTimeout: ref.connectTimeout,
-    receiveTimeout: ref.receiveTimeout,
-    headers: ref.headers,
-  ));
+  return Dio(
+      // BaseOptions(
+      //   baseUrl: ref.baseUrl,
+      //   connectTimeout: ref.connectTimeout,
+      //   receiveTimeout: ref.receiveTimeout,
+      //   headers: ref.headers,
+      // ),
+      );
 }
