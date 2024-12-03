@@ -1,0 +1,11 @@
+[package]
+name = "macro-hello"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+macro-hello-derive = { path = "../macro-hello/macro-hello-derive" }
+
+[[bin]]
+name = "hello"
+path = "src/main-macro.rs"
